@@ -1,0 +1,30 @@
+{
+  "name": "Codegurukul",
+  "version": "1.0.0",
+  "description": "This is my first web application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Prathamesh412/Codegurukul.git"
+  },
+  "keywords": [
+    "Educational",
+    "web",
+    "design",
+    "web",
+    "application"
+  ],
+  "author": "Prathamesh Prabhu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prathamesh412/Codegurukul/issues"
+  },
+  "homepage": "https://github.com/Prathamesh412/Codegurukul",
+  "dependencies": {
+    "express": "^4.13.0",
+    "jade": "^1.11.0"
+  }
+}
