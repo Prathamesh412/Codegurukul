@@ -1,0 +1,13 @@
+{
+  "name": "Codegurukul",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Prathamesh412/Codegurukul",
+  "authors": [
+    "Prathamesh <prathprabhu@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4"
+  }
+}

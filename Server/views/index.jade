@@ -1,10 +1,13 @@
-html
+html(lang='en')
 	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
 		title Jade
-		link(href="/css/main.css" rel="stylesheet")
-		link(href="/favicon.ico" rel="shortcut icon" type="image/x-icon")
-		
+		link(href='/vendor/botstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+		link(href='/favicon.ico', rel='stylesheet')
+		link(href='css/bootstrap.min.css', rel='stylesheet')
 	body
-		p hello World	
-		- for (var x=0; x < 3; x ++)
-			li item
+		h1.jumbotron Hello, world!
+		script(type="text/javascript",src="/vendor/jquery/dist/jquery.js")
+		script(type="text/javascript",src="/vendor/bootstrap/dist/js/bootstrap.js")
