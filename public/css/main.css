@@ -1,3 +1,14 @@
+.panel {
+  border: 1px solid #ccc;
+  color: #333;
+}
 
+.p {
+  color: grey;
+}
+
+.h3 {
+  background-color: blue;
+}
 
 /*# sourceMappingURL=main.css.map */

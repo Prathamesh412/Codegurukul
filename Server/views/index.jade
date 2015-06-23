@@ -1,13 +1,29 @@
-html(lang='en')
-	head
-		meta(charset='utf-8')
-		meta(http-equiv='X-UA-Compatible', content='IE=edge')
-		meta(name='viewport', content='width=device-width, initial-scale=1')
-		title Jade
-		link(href='/vendor/botstrap/dist/css/bootstrap.min.css', rel='stylesheet')
-		link(href='/favicon.ico', rel='stylesheet')
-		link(href='css/bootstrap.min.css', rel='stylesheet')
-	body
-		h1.jumbotron Hello, world!
-		script(type="text/javascript",src="/vendor/jquery/dist/jquery.js")
-		script(type="text/javascript",src="/vendor/bootstrap/dist/js/bootstrap.js")
+extends ./includes/layout
+block main
+	.container
+		.row
+			.col-md-12
+				.jumbotron
+					h1 hello this is Pratham
+					p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus optio quasi voluptas magni provident voluptate vitae id, explicabo repellendus vero? Earum enim error, aut, veniam dignissimos vero voluptatem voluptatibus quibusdam.
+	.container
+		.row
+			.col-md-6
+				.panel.panel-primary
+					.panel-heading This is panel-heading
+					.panel-body
+						each val in courseList
+							if val.featured
+								.row
+									.col-md-12
+										p= val.name
+			.col-md-6
+				.panel.panel-primary
+					.panel-heading This is scond-heading
+					.panel-body
+						each val in courseList
+							.row
+								.col-md-3 Published : #{val.published}
+								.col-md-9 #{val.name}
+
+							
