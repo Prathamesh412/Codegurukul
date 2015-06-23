@@ -1,14 +1,13 @@
-.panel {
-  border: 1px solid #ccc;
-  color: #333;
+.navbar-form .form-group, .navbar-form button {
+  margin-left: 10px;
 }
 
-.p {
-  color: grey;
+footer p {
+  border-top: 1px solid #d7e0e2;
 }
 
-.h3 {
-  background-color: blue;
+body {
+  padding-top: 90px;
 }
 
 /*# sourceMappingURL=main.css.map */

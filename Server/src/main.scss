@@ -1,13 +1,7 @@
+@import 'header';
+@import 'footer';
 
-.panel
-	{
-	border: 1px solid #ccc;
-	color: #333;
-	}
-	.p
-	{
-		color: grey;
-	}
-	.h3{
-	background-color: blue;
-	}
+body{
+	padding-top: 90px;
+}
+
