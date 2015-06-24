@@ -1,10 +1,133 @@
+var express = require('express'); //Node Module for express server
+var mongoose = require('mongoose'); //Node Module for mongoose server
+var bodyParser = require('body-parser'); //Node Module for BP server
 
-var express = require('express');  //node module for express server
+var app=express();
 
-var app =express(); //initialize express
+app.set('views',__dirname+'/server/views');
+console.log(__dirname+"   This is a variable");
+app.set('view engine','jade');
+app.use(express.static('public')); //static route handling
+
+//Routes
+app.use(bodyParser.json());// POST: {"name":"foo","color":"red"}
+app.use(bodyParser.urlencoded({extended:true}));// assuming POST:name=foo&color=red<--URL encoding
+app.get('/',function(req,res)
+{
+
+res.render('index',{courseList:courses});
+
+});
+
+app.get('/addcourse',function(req,res)
+{
+
+res.render('addcourse',{courseList:courses});
+
+});
+
+    app.post('/addcourse',function(req,res){
+        if(req.body.featuredName)
+            var featured = true;
+        //Create a new course
+        var course = new Course ({name: req.body.courseName, featured:featured, published:req.body.date});
+        //The Magic!
+        course.save(function(err){
+                Course.find(function(err,courses){
+            res.render('viewcourse',{courses:courses});
+        });
+        });
+
+    });
+
+    app.get('/viewcourse',function(req,res){
+
+        Course.find({sort:{published:-1}},function(err,courses){
+            res.render('viewcourse',{courses:courses});
+        });
+
+    });
+
+    app.post('/deletecourse/:id',function(req,res){
+        Course.remove({ _id:req.params.id }, function (err) {
+            Course.find(function(err,courses){
+            res.render('viewcourse',{courses:courses});
+        });
+    });
+});
+ app.get('/signup',function(req,res){
+            res.render('signup');
+
+    });
+ app.post('/signup',function(req,res)
+{
+
+var user = new User ({name: req.body.name, username:req.body.username, password:req.body.password});
+        //The Magic!
+        user.save(function(err){
+            User.find(function(err,user){
+            res.render('signup',{users:user});
+        });
+        });
+});
+
+app.post('/login', function(req,res){
+        User.findOne({username:req.body.username},function(err, user){
+            if(err)
+            {
+                console.log(err);
+            }
+            if(user){
+                if(user.password == req.body.password)
+                    {
+                        res.send("Valid User");
+                    }
+                else
+                     {
+                        res.send("Invalid User");
+                    }
+            }
+        })
+    })
+// app.get('/viewcourse',function(req,res)
+// {
+
+// Course.find({},function()
+// {
+// });
+// });
 
 
-//JSON ARRAY OF OBJECTS
+
+
+// Mongoose Connection with MongoDB
+mongoose.connect("mongodb://localhost/codegurukul");
+console.log("local mongodb opened");
+
+//Mongoose schema
+var courseSchema = new mongoose.Schema({
+name:String,
+featured:String,
+published:String,
+batch:String,
+time:Date
+});
+
+var userSchema = new mongoose.Schema({
+	name:String,
+	username:String,
+	password:String
+})
+
+//Compile schema into a mongoose model
+var Course = mongoose.model('Course',courseSchema);
+
+var User = mongoose.model('User',userSchema);
+// var fetchCourse=Course.find();//retrieve all the values 
+
+
+
+
 var courses = [
 {"name": "C# for Sociopaths", "featured": true, "published": new Date('10/5/2013')},
 {"name": "C# for Non-Sociopaths", "featured": true, "published": new Date('10/12/2013')},
@@ -23,34 +146,19 @@ var courses = [
 {"name": "Death March Coding for Fun and Profit", "featured": true, "published": new Date('7/1/2013')}
 ];
 
-app.set('views',__dirname + '/server/views');
 
 
-console.log("This is the path " + __dirname);
+// app.get('/login',function(req,res)
+// {
 
+// res.render('login');
 
-
-//app use is used to use middleware
-app.use(express.static('public')); //static route handling
-
-app.set('view engine','jade');
-
-// routes   req=request res = response ..It stimulates a http request..Both are global objects
+// });
+//req=>request res=>response
 
 
 
 
-app.get('/', function(req,res){
 
-	res.render('index',{courseList:courses}); //courselist is the file we are sending
-												//to index file and is send via json object
-})
-
-app.get('/login', function(req,res){
-
-	res.render('index');
-})
-app.listen(3020); //listen at specific port
-
-console.log("Express server is listening at port 3020");
-
+app.listen(3020);
+console.log("Express Server is listening at port 3020");

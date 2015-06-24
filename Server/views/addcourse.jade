@@ -1,0 +1,45 @@
+//- extends ./includes/layout
+//- block main
+//-       .container
+//-             .row
+//-                 form(action="/addcourse" method="post")
+//-                     font Course name:
+//-                     br
+//-                     input(type='text', name='coursename', value='' placeholder='XYZ Organization')
+//-                     br
+//-                     font Date of Publishing:
+//-                     br
+//-                     input(type='text', name='date', value='' placeholder='in DD/MM/YYYY')
+//-                     br 
+//-                     font Featured :
+//-                     br
+//-                     input(type='radio', name='feat' , value=true)
+//-                     p Yes
+//-                     input(type='radio', name='feat',  value=false)
+//-                     p No
+//-                     font Enter The Time:
+//-                     input(type='text', name='timer', value='' placeholder='Enter Time in HH:MM:SS')
+//-                     br
+//-                     br
+//-                     select(name="batches")
+//-                           option(value="batch0") 
+//-                           option(value="batch1") Batch 1
+//-                           option(value="batch2") Batch 2
+//-                           option(value="batch3") Batch 3
+//-                     br
+//-                     br
+//-                     input(type='submit', value='Submit')
+
+extends ./includes/layout
+block main
+  .container
+    .row
+      .col-md-6.col-md-offset-4
+        form(action='/addcourse' method='post')
+          input.form-control(type='text' placeholder='Course Name' name="courseName")
+          input.form-control(type='date' placeholder='Date' name="date")
+          .checkbox
+            label
+              input(type="checkbox" name="featuredName") 
+              |Featured
+          button.btn.btn-default(type='submit') Submit
